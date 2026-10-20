@@ -1,3 +1,32 @@
+# SeedSigner OS — XBT fork build (unofficial)
+
+**Unofficial. Not affiliated with, reviewed by or endorsed by the SeedSigner project.** This branch (`xbt`) is upstream SeedSigner OS `v0.8.7`, unchanged except for this note. The fork is in the app the OS boots: [Kilombino/seedsigner](https://github.com/Kilombino/seedsigner), branch `xbt`. That fork adds **XBT mode**, which signs with sighash `0x21` for the Bitcoin BLAKE2b chain, **JoinMarket fidelity-bond spending** and **input-amount verification**. Its README explains them.
+
+**Untested on real hardware by us.** Use a seed with no real funds first.
+
+## Rebuild a release image and compare
+
+Same procedure as upstream's [reproducible build](docs/building.md), pointed at the fork's tag:
+
+```
+git clone https://github.com/Kilombino/seedsigner-os.git && cd seedsigner-os
+git checkout xbt && git submodule update --init --depth 1
+export BOARD_TYPE=pi0        # or pi02w, pi2, pi4
+SS_ARGS="--$BOARD_TYPE --app-repo=https://github.com/Kilombino/seedsigner.git --app-branch=v0.8.7-xbt1" docker compose up --force-recreate --build
+sha256sum images/seedsigner_os.v0.8.7-xbt1.$BOARD_TYPE.img
+```
+
+Compare the hash with `SHA256SUMS` in the [release](https://github.com/Kilombino/seedsigner/releases). Then check that file's signature with the fork's key, [`seedsigner-xbt_pubkey.asc`](https://github.com/Kilombino/seedsigner/blob/xbt/seedsigner-xbt_pubkey.asc), fingerprint `DF04 5303 59B6 BDC8 2E05  66D7 3C2B C6F7 4555 C3D1`:
+
+```
+gpg --import seedsigner-xbt_pubkey.asc
+gpg --verify SHA256SUMS.asc SHA256SUMS
+```
+
+The same procedure, with `--app-branch=0.8.7` and no `--app-repo`, reproduces upstream's own 0.8.7 images. That is how we checked that this environment builds reproducibly.
+
+---
+
 <p align="center">
   <a href="https://seedsigner.com/">
     <img alt="Gitea" src="docs/img/logo.png" width="90"/>
