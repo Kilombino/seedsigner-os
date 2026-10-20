@@ -48,8 +48,13 @@ compile_translations_and_fonts() {
   ss_translations_repo="./src/seedsigner/resources/seedsigner-translations"
 
   # install depedencies for babel and fonttools(pyftsubset)
-  pip install babel || exit
-  pip install fonttools || exit
+  # Pinned (XBT fork build). Unpinned, pip takes the latest fonttools, whose
+  # pyftsubset output changes between releases: built in October 2026 with
+  # fonttools 4.67.0, upstream 0.8.7's pi0 image differed from the published one
+  # only in the subset NotoSansJP/KR/SC fonts. fonttools 4.63.0 (the release
+  # current when 0.8.7 was published) reproduces those fonts byte for byte.
+  pip install babel==2.18.0 || exit
+  pip install fonttools==4.63.0 || exit
   pip install -e . || exit
 
   # remove any existing binary mo files if they exist
