@@ -23,7 +23,7 @@ gpg --import seedsigner-xbt_pubkey.asc
 gpg --verify SHA256SUMS.asc SHA256SUMS
 ```
 
-The same procedure, with `--app-branch=0.8.7` and no `--app-repo`, reproduces upstream's own 0.8.7 images. That is how we checked that this environment builds reproducibly.
+The same procedure, with `--app-branch=0.8.7` and no `--app-repo`, reproduces upstream's published 0.8.7 pi0 image byte for byte (`67f005c7…`, checked October 2026). That only works because `opt/build.sh` here pins `babel==2.18.0` and `fonttools==4.63.0`. Upstream installs whatever is newest, and with fonttools 4.67.0 the subset NotoSans JP/KR/SC fonts, and so the image hash, come out different, with nothing else changed.
 
 ---
 
