@@ -1,6 +1,6 @@
 # SeedSigner OS — SeedSigner XBT (BLAKE2b) build (unofficial)
 
-**Unofficial. Not affiliated with, reviewed by or endorsed by the SeedSigner project.** This branch (`xbt`) is upstream SeedSigner OS `v0.8.7`, unchanged except for this note and two pinned build tools (see below). The changes are in the app the OS boots: **SeedSigner XBT (BLAKE2b)**, an unofficial version of SeedSigner with support for XBT (BLAKE2b), [Kilombino/seedsigner](https://github.com/Kilombino/seedsigner), branch `xbt`. It adds **XBT mode**, which signs with sighash `0x21` for the Bitcoin BLAKE2b chain, **JoinMarket fidelity-bond spending** and **input-amount verification**. Its README explains them.
+**Unofficial. Not affiliated with, reviewed by or endorsed by the SeedSigner project.** This branch (`xbt`) is upstream SeedSigner OS `v0.8.7`, unchanged except for this note and two pinned build tools (see below). The changes are in the app the OS boots: **SeedSigner XBT (BLAKE2b)**, an unofficial version of SeedSigner with support for Bitcoin (BLAKE2b), [Kilombino/seedsigner](https://github.com/Kilombino/seedsigner), branch `xbt`. It adds **XBT mode**, which signs with sighash `0x21` for the Bitcoin BLAKE2b chain, **JoinMarket fidelity-bond spending** and **input-amount verification**. Its README explains them.
 
 **Untested on real hardware by us.** Use a seed with no real funds first.
 
